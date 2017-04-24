@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Exemplo exportar PDF</h2>
+
+<div class="container">
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.ActionLink("Download", "GerarPDF","Pdf", htmlAttributes: new {@class = "btn btn-link" })
+        </div>
+    </div>
+</div>
+
