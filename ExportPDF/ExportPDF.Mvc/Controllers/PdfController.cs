@@ -21,6 +21,12 @@ namespace ExportPDF.Mvc.Controllers
         [HttpGet]
         public ActionResult GerarPDF()
         {
+            return Pdf();
+        }
+
+        #region GerarPDF
+        private FileStreamResult Pdf()
+        {
             MemoryStream workStream = new MemoryStream();
             Document document = new Document();
             PdfWriter.GetInstance(document, workStream).CloseStream = false;
@@ -33,7 +39,7 @@ namespace ExportPDF.Mvc.Controllers
 
             document.Open();
             //document.Add(gif);
-            
+
             document.Add(new Paragraph("______________________________________________________________________________"));
             document.Add(new Paragraph(titulo));
             document.Add(new Paragraph("______________________________________________________________________________"));
@@ -66,13 +72,10 @@ namespace ExportPDF.Mvc.Controllers
             workStream.Write(byteInfo, 0, byteInfo.Length);
             workStream.Position = 0;
 
-            return  File(workStream, "application/pdf","Teste.pdf");
+            //return new FileContentResult(workStream, "application/pdf");
+            return File(workStream, "application/pdf", "Teste.pdf");
+
         }
-
-
-        //public FileStreamResult FilePDF()
-        //{
-
-        //}
+        #endregion
     }
 }
